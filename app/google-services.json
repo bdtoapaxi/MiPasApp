@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "372709467562",
+    "firebase_url": "https://mipasapp-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mipasapp",
+    "storage_bucket": "mipasapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372709467562:android:d564f2faedb6e3c71e37d3",
+        "android_client_info": {
+          "package_name": "com.master.mipasapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372709467562-5tubpkgsdvvb7nii9g00cn63sjbt141u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.master.mipasapp",
+            "certificate_hash": "ddbdf709bd1f9494465257c59d4fb1492fa87951"
+          }
+        },
+        {
+          "client_id": "372709467562-90iljf9hccp4ph8ef6753jv5uh4oo3gt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMQZH5eF65k8wZ669Al2dUCSTMlFOMl2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372709467562-90iljf9hccp4ph8ef6753jv5uh4oo3gt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
