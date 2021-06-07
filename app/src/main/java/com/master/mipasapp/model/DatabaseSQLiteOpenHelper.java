@@ -15,7 +15,8 @@ public class DatabaseSQLiteOpenHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         //creamos la tabla donde vamos a guardar nuestros datos
-        db.execSQL("create table airquality(name text primary key, geolocation text, url text, time text, temperature real, wind real, humidity real, pressure real, co real, no2 real, o3 real, pm10 real, pm25 real, so2 real )");
+        db.execSQL("create table airquality(requestid integer primary key autoincrement,name text, geolocation text, url text, time text, temperature real, wind real, humidity real, pressure real, co real, no2 real, o3 real, pm10 real, pm25 real, so2 real )");
+        //version corta para testeo: db.execSQL("create table airquality(requestid integer primary key autoincrement,name text, temperature real, humidity int)");
     }
 
     @Override

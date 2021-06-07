@@ -63,11 +63,11 @@ public class SensorDataActivity extends Activity implements SensorEventListener{
         myCurrentuser = (FirebaseUser) i.getSerializableExtra("CurrentFireBaseUser");
         SensorDataObject = new SensorData();
 
-        signals();
+        //signals();
     }
 
     private void signals() {
-
+        /**metodo para detectar sensores de orgen magnetico, tutorial de android developers, no aporta para la practica*/
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null){
             //Toast.makeText(this,deviceSensors.toString(),Toast.LENGTH_LONG).show();
@@ -105,24 +105,17 @@ public class SensorDataActivity extends Activity implements SensorEventListener{
             SensorDataObject.setHumiditySensor(data_sensor);
 
         }
-        //System.out.println();
-        ///myCurrentuser.getUid();
+
         try {
             myFieldDataSensor.setValue(SensorDataObject);
             Log.i(TAG," Reference is: "+myReferenceDataBase.toString());
-            System.out.println("*** " + myReferenceDataBase.toString() + " ***");
+
         }catch (Throwable e){
             System.out.println("*** " + e + " ***");
             System.out.println("*** " + myReferenceDataBase.toString() + " ***");
         }
 
-
-
-
-
     }
-
-
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {

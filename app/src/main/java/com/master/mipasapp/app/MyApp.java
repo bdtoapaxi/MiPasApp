@@ -19,8 +19,6 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         databaseAirQuality = new DatabaseSQLiteOpenHelper(this, "databaseAirQuality",null, 1);
-        //DataBaseAirQuality = databaseAirQuality.getWritableDatabase();
-
         FirebaseApp.initializeApp(this);
     }
     public static DatabaseSQLiteOpenHelper getDatabaseAirQuality(){

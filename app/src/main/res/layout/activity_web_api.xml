@@ -7,6 +7,7 @@
     tools:context=".ui.WebApiActivity">
 
     <LinearLayout
+        android:id="@+id/linearlayout_web"
         android:layout_width="409dp"
         android:layout_height="729dp"
         android:orientation="vertical"
@@ -97,11 +98,5 @@
             android:layout_height="wrap_content"
             android:text="TextView" />
 
-        <Button
-            android:id="@+id/button_checkSqldataBase"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="checkSqldataBase"
-            android:text="checkSqldataBase" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

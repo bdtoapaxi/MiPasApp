@@ -6,8 +6,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.master.mipasapp.model.DatabaseSQLiteOpenHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.content.ContentValues.TAG;
 
 public class WebApiActivity extends AppCompatActivity {
     TextView textView_web_name;
@@ -40,12 +44,9 @@ public class WebApiActivity extends AppCompatActivity {
     TextView textView_web_pm10;
     TextView textView_web_pm25;
     TextView textView_web_so2;
-
+    LinearLayout linearlayout_web;
     RequestQueue requestQueue;
 
-    String checkdatabasecontect;
-    Button button_checkSqldataBase;
-    //
     /**
      * Air Quality Open Data Platform
      * Token: a7cc039f3dbd3bbf0eab310f2419ed5a4e0604db
@@ -72,18 +73,13 @@ public class WebApiActivity extends AppCompatActivity {
         textView_web_pm25 = findViewById(R.id.textView_web_pm25);
         textView_web_so2 = findViewById(R.id.textView_web_so2);
 
-        button_checkSqldataBase = findViewById(R.id.button_checkSqldataBase);
-
-
+        linearlayout_web = findViewById(R.id.linearlayout_web);
         requestQueue = Volley.newRequestQueue(this);
-        //checkSqldataBase();
-        //stringRequest();
         jsonObjectRequest();
     }
 
     private void jsonObjectRequest(){
 
-        //DatabaseSQLiteOpenHelper databaseAirQuality = new DatabaseSQLiteOpenHelper(this, "databaseAirQuality",null, 1);
         DatabaseSQLiteOpenHelper databaseAirQuality = MyApp.getDatabaseAirQuality();
         SQLiteDatabase DataBaseAirQuality = databaseAirQuality.getWritableDatabase();
         ContentValues register = new ContentValues();
@@ -141,10 +137,9 @@ public class WebApiActivity extends AppCompatActivity {
         /**
          * Guardamos los datos obtenidos de la web en la base de datos SQLite
          * estructura de la tabla de SQLite:
-         * db.execSQL("create table airquality(name text primary key, geolocation text, url text, time text, temperature real, wind real, humidity real, pressure real, co real, no2 real, o3 real, pm10 real, pm25 real, so2 real )");
+         *
          * */
         try {
-            checkdatabasecontect = response.getJSONObject("data").getJSONObject("city").getString("name");
             register.put("name", response.getJSONObject("data").getJSONObject("city").getString("name"));
             register.put("geolocation",response.getJSONObject("data").getJSONObject("city").getString("geo"));
             register.put("url",response.getJSONObject("data").getJSONObject("city").getString("url"));
@@ -162,34 +157,12 @@ public class WebApiActivity extends AppCompatActivity {
 
             DataBaseAirQuality.insert("airquality", null,register);
             DataBaseAirQuality.close();
-
-            /**
-             * Realizamos una prueba de lectura de la base de datos de SQLite para verificar la correcta escritura en ella
-             * */
-
-            //checkSqldataBase();
-           /* Cursor aux = DataBaseAirQuality.rawQuery(
-                    "select name, geolocation,url,time from airquality where name =" + response.getJSONObject("data").getJSONObject("city").getString("name"),
-                    null
-            );
-
-            Toast.makeText(this,aux.getString(0),Toast.LENGTH_LONG).show();*/
+            Toast.makeText(this, "Sqlite Data Base Written: Success!",Toast.LENGTH_SHORT).show();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void checkSqldataBase(View view) {
-
-        DatabaseSQLiteOpenHelper databaseAirQuality = new DatabaseSQLiteOpenHelper(this, "databaseAirQuality",null, 1);
-        SQLiteDatabase DataBaseAirQuality = databaseAirQuality.getWritableDatabase();
-        Cursor aux = DataBaseAirQuality.rawQuery(
-                "select time from airquality where name =" + checkdatabasecontect,
-                null
-        );
-
-        Toast.makeText(this,aux.getString(0),Toast.LENGTH_LONG).show();
-    }
 
 }
